@@ -119,7 +119,12 @@ export const getListings = async (req, res, next) => {
     const limit = parseInt(req.query.limit) || 9;
     const startIndex = parseInt(req.query.startIndex) || 0;
 
-    
+    const offer = req.query.offer === 'true' ? true : req.query.offer === 'false' ? false : { $in: [false, true] };
+    const furnished = req.query.furnished === 'true' ? true : req.query.furnished === 'false' ? false : { $in: [false, true] };
+    const parking = req.query.parking === 'true' ? true : req.query.parking === 'false' ? false : { $in: [false, true] };
+    const type = req.query.type === 'sale' || req.query.type === 'rent' ? req.query.type : { $in: ['sale', 'rent'] };
+
+    const searchTerm = req.query.searchTerm || '';
     const sort = req.query.sort || 'createdAt';
     const order = req.query.order === 'asc' || req.query.order === 'desc' ? req.query.order : 'desc';
 
@@ -134,4 +139,9 @@ export const getListings = async (req, res, next) => {
       .limit(limit)
       .skip(startIndex);
 
-
+    return res.status(200).json(listings);
+  } catch (error) {
+    console.error('Error fetching listings:', error.message);
+    next(error);
+  }
+};
