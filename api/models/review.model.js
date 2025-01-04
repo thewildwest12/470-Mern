@@ -50,7 +50,7 @@ reviewSchema.pre('save', async function(next) {
 
 const Review = mongoose.model('Review', reviewSchema);
 
-export default Review;
+export default Review; 
 
 
 
