@@ -182,7 +182,27 @@ export default function Listing() {
               ))}
             </Swiper>
             
-        
+            {/* Share Button */}
+            <button
+              className="absolute top-4 right-4 z-10 bg-neutral-800 text-amber-700 rounded-full p-3 hover:bg-neutral-700 transition-all duration-300 border border-amber-700"
+              onClick={() => {
+                navigator.clipboard.writeText(window.location.href);
+                setCopied(true);
+                setTimeout(() => {
+                  setCopied(false);
+                }, 2000);
+              }}
+            >
+              <FaShare className="text-xl" />
+            </button>
+            {copied && (
+              <div className="absolute top-20 right-4 z-10 bg-neutral-800 text-amber-700 rounded-lg shadow-lg px-4 py-2 border border-amber-700">
+                <p>Link copied!</p>
+              </div>
+            )}
+          </div>
+
+
             {/* Reviews Section */}
             <div className="mt-8 bg-neutral-800 rounded-2xl p-6 border border-neutral-700">
               <h2 className="text-2xl font-bold text-white mb-6">Property Reviews</h2>
