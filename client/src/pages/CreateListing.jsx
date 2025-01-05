@@ -74,3 +74,10 @@ export default function CreateListing() {
       );
     });
   };
+
+  const handleRemoveImage = (index) => {
+    setFormData({
+      ...formData,
+      imageUrls: formData.imageUrls.filter((_, i) => i !== index),
+    });
+  };
