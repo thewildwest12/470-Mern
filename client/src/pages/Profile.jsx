@@ -200,3 +200,45 @@ export default function Profile() {
               </p>
             </div>
           </div>
+
+          {/* Right Column - Action Buttons */}
+          <div className="bg-slate-800 rounded-xl p-8 shadow-xl border border-slate-700">
+            <div className="space-y-4">
+              <Link
+                to="/update-profile"
+                className="block w-full bg-amber-500 text-white py-4 rounded-xl text-center font-semibold hover:bg-amber-400 transition shadow-lg"
+              >
+                Update Profile Information
+              </Link>
+              <Link
+                to="/create-listing"
+                className="block w-full bg-amber-600 text-white py-4 rounded-xl text-center font-semibold hover:bg-amber-500 transition shadow-lg"
+              >
+                Create New Listing
+              </Link>
+              <Link
+                to="/my-listings"
+                className="block w-full bg-amber-700 text-white py-4 rounded-xl text-center font-semibold hover:bg-amber-600 transition shadow-lg"
+              >
+                View My Listings
+              </Link>
+              <button
+                onClick={() => setShowDeleteConfirm(true)}
+                className="w-full bg-red-800 text-white py-4 rounded-xl font-semibold hover:bg-red-700 transition shadow-lg"
+              >
+                Delete Account
+              </button>
+              <button
+                onClick={handleSignOut}
+                className="w-full bg-red-600 text-white py-4 rounded-xl font-semibold hover:bg-red-500 transition shadow-lg"
+              >
+                Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
