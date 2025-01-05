@@ -47,6 +47,7 @@ export default function SignUp() {
       setError(error.message);
     }
   };
+  
 
   return (
     <div className='min-h-screen bg-neutral-900 py-16'>
