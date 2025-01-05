@@ -50,3 +50,41 @@ export default function Contact({ listing }) {
       },
     });
   };
+
+  return (
+    <>
+      {landlord && (
+        <div className='flex flex-col gap-2'>
+          <p>
+            
+            <span className='font-semibold text-white'>Contact</span>{' '}
+            <span className='font-semibold text-white'>{landlord.name}</span>{' '}
+            <span className='font-semibold text-white'>{landlord.email}</span>{' '}
+            <span className='font-semibold text-white'>For the property </span>{' '}
+            
+
+          </p>
+          <textarea
+            name='message'
+            id='message'
+            rows='2'
+            value={message}
+            onChange={onChange}
+            placeholder='Enter your message here...'
+            className='w-full border p-3 rounded-lg bg-blue text-black' // Changed background and text color
+          ></textarea>
+
+          <Link
+            to={`mailto:${landlord.email}?subject=Regarding ${listing.name}&body=${message}`}
+            className='bg-slate-700 text-white text-center p-3 uppercase rounded-lg hover:opacity-95'
+            onClick={handleSendMessage}
+          >
+            Send Message
+          </Link>
+        </div>
+      )}
+      {/* Toast Container */}
+      <ToastContainer />
+    </>
+  );
+}
