@@ -60,6 +60,23 @@ export default function MyListings() {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-r from-slate-800 to-slate-900 flex items-center justify-center">
+        <div className="text-white text-xl">Loading...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-r from-slate-800 to-slate-900 flex items-center justify-center">
+        <div className="text-red-400 text-xl">{error}</div>
+      </div>
+    );
+  }
+
+
 // // MyListings.jsx
 // import { useState, useEffect } from 'react';
 // import { useSelector } from 'react-redux';
