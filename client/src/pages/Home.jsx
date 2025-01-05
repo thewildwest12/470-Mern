@@ -14,7 +14,17 @@ export default function Home() {
   const [rentListings, setRentListings] = useState([]);
   SwiperCore.use([Navigation]);
 
-
+  useEffect(() => {
+    const fetchOfferListings = async () => {
+      try {
+        const res = await fetch('/api/listing/get?offer=true&limit=4');
+        const data = await res.json();
+        setOfferListings(data);
+        fetchRentListings();
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
 
   return (
