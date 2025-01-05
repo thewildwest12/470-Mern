@@ -142,6 +142,47 @@ export default function Listing() {
     }
   };
 
+  return (
+    <main className="min-h-screen bg-neutral-900">
+      {loading && (
+        <div className="flex items-center justify-center h-screen">
+          <p className="text-3xl text-amber-700 font-semibold animate-pulse">
+            Loading...
+          </p>
+        </div>
+      )}
+      {error && (
+        <div className="flex items-center justify-center h-screen">
+          <p className="text-2xl text-red-500 font-medium">
+            Something went wrong!
+          </p>
+        </div>
+      )}
+      {listing && !loading && !error && (
+        <div className="max-w-6xl mx-auto px-4 py-8">
+          {/* Image Slider Section */}
+          <div className="relative mb-8">
+            <Swiper 
+              navigation 
+              className="rounded-2xl overflow-hidden"
+              style={{
+                '--swiper-navigation-color': '#b45309',
+                '--swiper-navigation-size': '22px',
+              }}
+            >
+              {listing.imageUrls.map((url) => (
+                <SwiperSlide key={url}>
+                  <div
+                    className="h-[70vh] bg-center bg-no-repeat bg-cover"
+                    style={{
+                      backgroundImage: `url(${url})`,
+                    }}
+                  ></div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            
+        
             {/* Reviews Section */}
             <div className="mt-8 bg-neutral-800 rounded-2xl p-6 border border-neutral-700">
               <h2 className="text-2xl font-bold text-white mb-6">Property Reviews</h2>
