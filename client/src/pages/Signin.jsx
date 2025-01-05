@@ -9,7 +9,23 @@ import {
   signInFailure,
 } from '../redux/user/userSlice';
 import OAuth from '../components/OAuth';
-(
+
+export default function SignIn() {
+  const [formData, setFormData] = useState({});
+
+  const { loading, error } = useSelector((state) => state.user); //both in one globally diclared 
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  return (
     <div className='min-h-screen bg-neutral-900 py-16'>
       <div className='max-w-lg mx-auto px-4'>
         <h1 className='text-4xl text-center font-bold text-white mb-6'>Sign In</h1>
