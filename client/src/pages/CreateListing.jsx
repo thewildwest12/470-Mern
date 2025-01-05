@@ -71,3 +71,39 @@
                   </div>
                 ))}
             </div>
+
+            {/* Number Inputs */}
+            <div className="flex gap-6 flex-wrap">
+              {[
+                { id: 'bedrooms', label: 'Bedrooms', min: 1, max: 10 },
+                { id: 'bathrooms', label: 'Bathrooms', min: 1, max: 10 },
+                { id: 'regularPrice', label: 'Regular Price', min: 50, max: 10000000 },
+                formData.offer && {
+                  id: 'discountPrice',
+                  label: 'Discounted Price',
+                  min: 0,
+                  max: 10000000,
+                },
+              ]
+                .filter(Boolean)
+                .map((field) => (
+                  <div key={field.id} className="flex flex-col items-center gap-2">
+                    <input
+                      type="number"
+                      id={field.id}
+                      min={field.min}
+                      max={field.max}
+                      required
+                      className="p-4 border border-slate-600 rounded-lg bg-slate-800 text-white focus:ring-2 focus:ring-amber-400"
+                      onChange={handleChange}
+                      value={formData[field.id]}
+                    />
+                    <p className="text-center">{field.label}</p>
+                    {(field.id === 'regularPrice' || field.id === 'discountPrice') &&
+                      formData.type === 'rent' && (
+                        <span className="text-xs text-slate-400">($ / month)</span>
+                      )}
+                  </div>
+                ))}
+            </div>
+          </div>
