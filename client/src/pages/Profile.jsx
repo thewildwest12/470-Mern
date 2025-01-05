@@ -184,4 +184,19 @@ export default function Profile() {
               <button
                 onClick={() => fileRef.current.click()}
                 className="mt-4 w-full bg-amber-600 text-white py-3 px-4 rounded-xl font-semibold hover:bg-amber-500 transition shadow-lg"
-  
+              >
+                Change Profile Picture
+              </button>
+              <p className="text-sm mt-2">
+                {fileUploadError ? (
+                  <span className="text-red-400">Error Image upload (image must be less than 2 mb)</span>
+                ) : filePerc > 0 && filePerc < 100 ? (
+                  <span className="text-amber-400">{`Uploading ${filePerc}%`}</span>
+                ) : filePerc === 100 ? (
+                  <span className="text-green-400">Image successfully uploaded!</span>
+                ) : (
+                  ''
+                )}
+              </p>
+            </div>
+          </div>
