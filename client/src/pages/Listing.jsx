@@ -224,6 +224,18 @@ export default function Listing() {
               </div>
 
 
+              {/* Contact Button */}
+              {currentUser && listing.userRef !== currentUser._id && !contact && (
+                <button
+                  onClick={() => setContact(true)}
+                  className="w-full bg-amber-700 text-white py-4 rounded-xl hover:bg-amber-800 transition-colors duration-300 font-semibold mt-6"
+                >
+                  Contact Owner
+                </button>
+              )}
+              {contact && <Contact listing={listing} />}
+            </div>
+
             {/* Reviews Section */}
             <div className="mt-8 bg-neutral-800 rounded-2xl p-6 border border-neutral-700">
               <h2 className="text-2xl font-bold text-white mb-6">Property Reviews</h2>
