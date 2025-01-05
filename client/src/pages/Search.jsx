@@ -179,3 +179,26 @@ export default function Search() {
                     ))}
                   </div>
                 </div>
+
+                {/* Amenities */}
+                <div className="space-y-4">
+                  <label className="text-sm font-medium text-slate-300">Luxury Amenities</label>
+                  <div className="grid grid-cols-2 gap-4">
+                    {[
+                      { id: 'parking', label: 'Private Parking' },
+                      { id: 'furnished', label: 'Fully Furnished' },
+                      { id: 'offer', label: 'Special Offer' }
+                    ].map((amenity) => (
+                      <label key={amenity.id} className="flex items-center">
+                        <input
+                          type="checkbox"
+                          id={amenity.id}
+                          className="w-4 h-4 text-amber-400 focus:ring-amber-400 bg-slate-700 border-slate-600"
+                          onChange={handleChange}
+                          checked={sidebardata[amenity.id]}
+                        />
+                        <span className="ml-2 text-slate-300">{amenity.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
