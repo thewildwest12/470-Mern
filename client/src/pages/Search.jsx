@@ -202,3 +202,29 @@ export default function Search() {
                     ))}
                   </div>
                 </div>
+
+                {/* Sort Options */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-slate-300">Sort By</label>
+                  <select
+                    onChange={handleChange}
+                    value={`${sidebardata.sort}_${sidebardata.order}`}
+                    id="sort_order"
+                    className="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 focus:ring-2 focus:ring-amber-400 focus:border-transparent text-white"
+                  >
+                    <option value="regularPrice_desc">Price: High to Low</option>
+                    <option value="regularPrice_asc">Price: Low to High</option>
+                    <option value="createdAt_desc">Newest Listings</option>
+                    <option value="createdAt_asc">Oldest Listings</option>
+                  </select>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full bg-amber-400 text-slate-900 py-4 px-6 rounded-lg font-semibold hover:bg-amber-500 transition-colors duration-300"
+                >
+                  Search Properties
+                </button>
+              </form>
+            </div>
+          </div>
