@@ -21,6 +21,32 @@ export default function SignUp() {
     });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();// not to refresh until submit button
+    try {
+      setLoading(true);
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        }, // sending the data also making it string while Posting it to the backend
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      //middle ware index.js called if error found
+      if (data.success === false) {
+        setLoading(false);
+        setError(data.message);
+        return;
+      }
+      setLoading(false);
+      setError(null);
+      navigate('/sign-in');
+    } catch (error) {
+      setLoading(false);
+      setError(error.message);
+    }
+  };
 
   return (
     <div className='min-h-screen bg-neutral-900 py-16'>
