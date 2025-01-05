@@ -130,3 +130,28 @@ export default function Profile() {
     }
   };
 
+  return (
+    <div className="min-h-screen bg-gradient-to-r from-slate-900 to-slate-800">
+      {/* Modals remain the same */}
+      {showDeleteConfirm && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-slate-800 p-6 rounded-xl max-w-md w-full">
+            <h3 className="text-2xl font-bold text-white mb-4">Confirm Delete Account</h3>
+            <p className="text-slate-300 mb-6">Are you sure you want to delete your account? This action cannot be undone.</p>
+            <div className="flex gap-4">
+              <button
+                onClick={handleDeleteUser}
+                className="flex-1 bg-red-600 text-white py-2 rounded-lg hover:bg-red-500"
+              >
+                Yes, Delete
+              </button>
+              <button
+                onClick={() => setShowDeleteConfirm(false)}
+                className="flex-1 bg-slate-600 text-white py-2 rounded-lg hover:bg-slate-500"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
