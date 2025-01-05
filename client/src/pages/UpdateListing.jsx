@@ -235,3 +235,31 @@ export default function CreateListing() {
                 </div>
               ))}
             </div>
+
+            <div className="flex flex-wrap gap-8">
+              {[
+                { id: 'bedrooms', label: 'Beds', min: 1, max: 10 },
+                { id: 'bathrooms', label: 'Baths', min: 1, max: 10 },
+                { id: 'regularPrice', label: 'Regular price', min: 50, max: 10000000 },
+              ].map(({ id, label, min, max }) => (
+                <div key={id} className="flex items-center gap-3">
+                  <input
+                    type="number"
+                    id={id}
+                    min={min}
+                    max={max}
+                    required
+                    className="bg-slate-900/50 border-2 border-slate-700 p-4 rounded-lg focus:border-amber-400 focus:outline-none transition-colors w-32 text-lg text-white"
+                    onChange={handleChange}
+                    value={formData[id]}
+                  />
+                  <div className="flex flex-col">
+                    <p className="text-white text-lg">{label}</p>
+                    {id === 'regularPrice' && formData.type === 'rent' && (
+                      <span className="text-sm text-slate-400">($ / month)</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
