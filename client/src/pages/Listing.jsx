@@ -21,6 +21,39 @@ import {
 import Contact from '../components/Contact';
 import ReviewForm from '../components/ReviewForm';
 
+export default function Listing() {
+  SwiperCore.use([Navigation]);
+  const [listing, setListing] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [contact, setContact] = useState(false);
+  const [reviews, setReviews] = useState([]);
+  const [editingReview, setEditingReview] = useState(null);
+  const [hasUserReviewed, setHasUserReviewed] = useState(false);
+  const params = useParams();
+  const { currentUser } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    const fetchListing = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch(`/api/listing/get/${params.listingId}`);
+        const data = await res.json();
+        if (data.success === false) {
+          setError(true);
+          setLoading(false);
+          return;
+        }
+        setListing(data);
+        setLoading(false);
+        setError(false);
+      } catch (error) {
+        setError(true);
+        setLoading(false);
+      }
+    };
+
     const fetchReviews = async () => {
       try {
         const res = await fetch(`/api/review/listing/${params.listingId}`);
