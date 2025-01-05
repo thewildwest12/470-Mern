@@ -202,6 +202,27 @@ export default function Listing() {
             )}
           </div>
 
+          {/* Main Content */}
+          <div className="bg-neutral-800 rounded-2xl shadow-xl p-6 border border-neutral-700">
+            {/* Header Section */}
+            <div className="space-y-6">
+              <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+                <h1 className="text-3xl font-bold text-white">
+                  {listing.name}
+                </h1>
+                <div className="flex items-center gap-2">
+                  <FaDollarSign className="text-amber-700 text-2xl" />
+                  <p className="text-2xl font-semibold text-amber-700">
+                    {listing.offer
+                      ? listing.discountPrice.toLocaleString('en-US')
+                      : listing.regularPrice.toLocaleString('en-US')}
+                    {listing.type === 'rent' && (
+                      <span className="text-neutral-400 text-lg ml-1">/month</span>
+                    )}
+                  </p>
+                </div>
+              </div>
+
 
             {/* Reviews Section */}
             <div className="mt-8 bg-neutral-800 rounded-2xl p-6 border border-neutral-700">
