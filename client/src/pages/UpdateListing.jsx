@@ -263,3 +263,30 @@ export default function CreateListing() {
               ))}
             </div>
           </div>
+
+          <div className="flex flex-col flex-1 gap-6">
+            <div className="text-white">
+              <p className="text-xl font-semibold">Images</p>
+              <p className="text-slate-400 mt-2">
+                The first image will be the cover (max 6)
+              </p>
+            </div>
+
+            <div className="flex gap-4">
+              <input
+                onChange={(e) => setFiles(e.target.files)}
+                className="bg-slate-900/50 border-2 border-slate-700 p-4 rounded-lg focus:border-amber-400 focus:outline-none transition-colors flex-1 text-white"
+                type="file"
+                id="images"
+                accept="image/*"
+                multiple
+              />
+              <button
+                type="button"
+                disabled={uploading}
+                onClick={handleImageSubmit}
+                className="px-6 py-4 border-2 border-amber-400 text-amber-400 rounded-lg hover:bg-amber-400 hover:text-slate-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-lg font-semibold"
+              >
+                {uploading ? 'Uploading...' : 'Upload'}
+              </button>
+            </div>
