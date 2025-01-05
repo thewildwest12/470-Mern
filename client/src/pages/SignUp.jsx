@@ -1,5 +1,26 @@
 // SignUp.jsx
-//Araf Ahmed
+
+
+import { useState } from 'react';
+
+import { Link, useNavigate } from 'react-router-dom';
+import OAuth from '../components/OAuth';
+
+export default function SignUp() {
+  const [formData, setFormData] = useState({}); //input data
+
+  const [error, setError] = useState(null); // to handle error initially Null
+  const [loading, setLoading] = useState(false); // while loading we want to disable the signup button initially false
+
+  const navigate = useNavigate(); //naviage to sign-in page later
+  
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
 
   return (
     <div className='min-h-screen bg-neutral-900 py-16'>
@@ -8,27 +29,27 @@
         <div className='w-24 h-1 bg-amber-400 mx-auto mb-8'></div>
         
         <div className='bg-neutral-800 p-8 rounded-2xl shadow-xl border border-neutral-700'>
-          <form onSubmit={} className='flex flex-col gap-4'>
+          <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
             <input
               type='text'
               placeholder='Username'
               className='bg-neutral-900 border border-neutral-700 p-3 rounded-xl text-white placeholder-neutral-400 focus:outline-none focus:border-amber-400 transition-colors'
               id='username'
-              onChange={}
+              onChange={handleChange}
             />
             <input
               type='email'
               placeholder='Email'
               className='bg-neutral-900 border border-neutral-700 p-3 rounded-xl text-white placeholder-neutral-400 focus:outline-none focus:border-amber-400 transition-colors'
               id='email'
-              onChange={}
+              onChange={handleChange}
             />
             <input
               type='password'
               placeholder='Password'
               className='bg-neutral-900 border border-neutral-700 p-3 rounded-xl text-white placeholder-neutral-400 focus:outline-none focus:border-amber-400 transition-colors'
               id='password'
-              onChange={}
+              onChange={handleChange}
             />
 
             <button
