@@ -139,3 +139,43 @@ export default function Search() {
           <div className="w-24 h-1 bg-amber-400 mx-auto mb-8"></div>
         </div>
       </div>
+
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Refined Sidebar */}
+          <div className="lg:w-1/3">
+            <div className="bg-slate-800 rounded-xl shadow-xl p-8 border border-slate-700">
+              <h2 className="text-2xl font-bold text-white mb-6">Refined Search</h2>
+              <form onSubmit={handleSubmit} className="space-y-8">
+                {/* Search Input */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-slate-300">Property Search</label>
+                  <input
+                    type="text"
+                    id="searchTerm"
+                    placeholder="Search luxury properties..."
+                    className="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 focus:ring-2 focus:ring-amber-400 focus:border-transparent text-white placeholder-slate-400"
+                    value={sidebardata.searchTerm}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                {/* Property Type */}
+                <div className="space-y-4">
+                  <label className="text-sm font-medium text-slate-300">Property Type</label>
+                  <div className="flex gap-4">
+                    {['all', 'rent', 'sale'].map((type) => (
+                      <label key={type} className="flex items-center">
+                        <input
+                          type="radio"
+                          id={type}
+                          name="type"
+                          className="w-4 h-4 text-amber-400 focus:ring-amber-400 bg-slate-700 border-slate-600"
+                          onChange={handleChange}
+                          checked={sidebardata.type === type}
+                        />
+                        <span className="ml-2 text-slate-300 capitalize">{type}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
