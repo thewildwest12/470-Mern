@@ -92,3 +92,26 @@ export default function Profile() {
       dispatch(updateUserFailure(error.message));
     }
   };
+
+  const handleDeleteUser = async () => {
+    setShowGoodbye(true);
+    try {
+      dispatch(deleteUserStart());
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        setShowGoodbye(false);
+        return;
+      }
+      setTimeout(() => {
+        dispatch(deleteUserSuccess(data));
+      }, 2000);
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
+      setShowGoodbye(false);
+    }
+  };
+
