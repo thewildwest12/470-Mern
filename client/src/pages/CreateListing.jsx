@@ -107,3 +107,78 @@
                 ))}
             </div>
           </div>
+
+          {/* Image Upload Section */}
+          <div className="flex flex-col flex-1 gap-6">
+            <p className="font-semibold text-amber-400">
+              Images:
+              <span className="font-normal text-slate-400 ml-2">
+                The first image will be the cover (max 6 images)
+              </span>
+            </p>
+            <div className="flex gap-4">
+              <input
+                onChange={(e) => setFiles(e.target.files)}
+                className="p-4 border border-slate-600 rounded-xl w-full bg-slate-800 text-slate-200 file:bg-amber-400 file:text-slate-900 file:border-0 file:rounded-lg file:px-4 file:py-2 file:mr-4 file:cursor-pointer hover:file:bg-amber-300"
+                type="file"
+                id="images"
+                accept="image/*"
+                multiple
+              />
+              <button
+                type="button"
+                disabled={uploading}
+                onClick={handleImageSubmit}
+                className="p-4 text-slate-900 bg-amber-400 rounded-lg hover:bg-amber-300 focus:outline-none disabled:opacity-70"
+              >
+                {uploading ? 'Uploading...' : 'Upload'}
+              </button>
+            </div>
+            <p className="text-red-400 text-sm">
+              {imageUploadError && imageUploadError}
+            </p>
+            {formData.imageUrls.length > 0 && (
+              <div className="mt-4 space-y-4">
+                {formData.imageUrls.map((url, index) => (
+                  <div
+                    key={url}
+                    className="flex justify-between items-center p-4 border border-slate-600 rounded-xl bg-slate-800"
+                  >
+                    <img
+                      src={url}
+                      alt="listing"
+                      className="w-20 h-20 object-contain rounded-lg"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveImage(index)}
+                      className="p-2 text-red-400 rounded-lg hover:text-red-300 focus:outline-none"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={loading || uploading}
+              className="p-4 bg-amber-400 text-slate-900 rounded-lg w-full hover:bg-amber-300 focus:outline-none disabled:opacity-70 font-semibold"
+            >
+              {loading ? 'Creating...' : 'Create Listing'}
+            </button>
+          </div>
+        </form>
+
+        {/* Error Message */}
+        {error && (
+          <p className="text-red-400 text-sm mt-4 text-center">
+            {error}
+          </p>
+        )}
+      </main>
+    </div>
+  );
+}
