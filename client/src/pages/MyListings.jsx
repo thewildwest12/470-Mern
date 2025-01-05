@@ -84,7 +84,7 @@ export default function MyListings() {
           <div className="bg-slate-800 p-6 rounded-xl border border-slate-700 max-w-md w-full mx-4">
             <h3 className="text-xl font-bold text-white mb-4">Delete Listing</h3>
             <p className="text-slate-300 mb-6">
-              Are you sure you want to delete "{listingToDelete?.name}"? This action can not be undone.
+              Are you sure you want to delete "{listingToDelete?.name}"? This action cannot be undone.
             </p>
             <div className="flex gap-4 justify-end">
               <button
@@ -103,3 +103,32 @@ export default function MyListings() {
           </div>
         </div>
       )}
+
+      {/* Hero Section */}
+      <div className="border-b border-slate-700 py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">
+            My Listings
+          </h1>
+          <div className="w-24 h-1 bg-amber-400 mx-auto"></div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto py-12 px-4">
+        {/* Create Listing Button */}
+        <div className="mb-8 text-center">
+          <Link
+            to="/create-listing"
+            className="inline-block bg-amber-400 text-slate-900 px-8 py-4 rounded-xl font-semibold hover:bg-amber-300 transition shadow-lg"
+          >
+            Create New Listing
+          </Link>
+        </div>
+
+        {userListings.length === 0 ? (
+          <div className="text-center">
+            <p className="text-white text-xl mb-6">You have not created any listings yet.</p>
+          </div>
+        ) : (
+          
