@@ -76,6 +76,34 @@ export default function MyListings() {
     );
   }
 
+  return (
+    <div className="min-h-screen bg-gradient-to-r from-slate-800 to-slate-900">
+      {/* Delete Confirmation Modal */}
+      {showDeleteModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-slate-800 p-6 rounded-xl border border-slate-700 max-w-md w-full mx-4">
+            <h3 className="text-xl font-bold text-white mb-4">Delete Listing</h3>
+            <p className="text-slate-300 mb-6">
+              Are you sure you want to delete "{listingToDelete?.name}"? This action cannot be undone.
+            </p>
+            <div className="flex gap-4 justify-end">
+              <button
+                onClick={() => setShowDeleteModal(false)}
+                className="px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => handleDeleteListing(listingToDelete?._id)}
+                className="px-4 py-2 bg-red-900/20 text-red-400 rounded-lg hover:bg-red-900/40 transition border border-red-400"
+              >
+                Delete Listing
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
 
 // // MyListings.jsx
 // import { useState, useEffect } from 'react';
