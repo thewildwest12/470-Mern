@@ -125,3 +125,26 @@
                           </span>
                         </div>
                         
+                        {/* Username */}
+                        <span className="text-neutral-300 text-sm font-medium">
+                          - {review.userRef?.username || review.userRef || 'Anonymous User'}
+                        </span>
+                      </div>
+
+                      {/* Delete Button (only for review owner) */}
+                      {currentUser && review.userRef?._id === currentUser._id && (
+                        <div className="flex items-center space-x-2">
+                          <button 
+                            onClick={() => handleDeleteReview(review._id)}
+                            className="text-red-500 hover:text-red-600 transition-colors"
+                          >
+                            <FaTrash />
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                    <p className="text-neutral-300">{review.comment}</p>
+                  </div>
+                ))}
+              </div>
+           
