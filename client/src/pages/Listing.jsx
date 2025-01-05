@@ -87,3 +87,17 @@
     }
   };
 
+
+            {/* Reviews Section */}
+            <div className="mt-8 bg-neutral-800 rounded-2xl p-6 border border-neutral-700">
+              <h2 className="text-2xl font-bold text-white mb-6">Property Reviews</h2>
+              
+              {/* Review Form - Only for logged-in users who didn't list this property */}
+              {currentUser && listing.userRef !== currentUser._id && !hasUserReviewed && (
+                <ReviewForm 
+                  listingId={params.listingId} 
+                  onReviewSubmit={handleReviewSubmit}
+                  initialReview={editingReview}
+                  onUpdateReview={handleUpdateReview}
+                />
+              )}
