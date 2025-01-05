@@ -36,3 +36,17 @@ export default function Contact({ listing }) {
       });
       return;
     }
+
+    toast.success("Email client opened to contact the owner!", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      style: {
+        backgroundColor: "navy", // Navy blue background
+        color: "white", // White text color
+      },
+    });
+  };
