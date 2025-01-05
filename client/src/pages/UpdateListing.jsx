@@ -210,3 +210,28 @@ export default function CreateListing() {
               onChange={handleChange}
               value={formData.address}
             />
+
+            <div className="flex gap-8 flex-wrap">
+              {[
+                { id: 'sale', label: 'Sell' },
+                { id: 'rent', label: 'Rent' },
+                { id: 'parking', label: 'Parking spot' },
+                { id: 'furnished', label: 'Furnished' },
+                { id: 'offer', label: 'Offer' },
+              ].map(({ id, label }) => (
+                <div key={id} className="flex items-center gap-3">
+                  <input
+                    type="checkbox"
+                    id={id}
+                    className="w-6 h-6 rounded border-2 border-amber-400 checked:bg-amber-400 focus:ring-amber-400"
+                    onChange={handleChange}
+                    checked={
+                      id === 'sale' || id === 'rent'
+                        ? formData.type === id
+                        : formData[id]
+                    }
+                  />
+                  <span className="text-white text-lg">{label}</span>
+                </div>
+              ))}
+            </div>
