@@ -19,3 +19,29 @@ import {
 } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+export default function Profile() {
+  // Keeping all the existing state and handlers
+  const fileRef = useRef(null);
+  const { currentUser, loading, error } = useSelector((state) => state.user);
+  const [file, setFile] = useState(undefined);
+  const [filePerc, setFilePerc] = useState(0);
+  const [fileUploadError, setFileUploadError] = useState(false);
+  const [formData, setFormData] = useState({});
+  const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [showListingsError, setShowListingsError] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [showGoodbye, setShowGoodbye] = useState(false);
+  const dispatch = useDispatch();
+  const [showNoListingsModal, setShowNoListingsModal] = useState(false);
+
+  // Keep all the existing useEffects and handlers
+  useEffect(() => {
+    setFormData({ ...currentUser });
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (file) {
+      handleFileUpload(file);
+    }
+  }, [file]);
