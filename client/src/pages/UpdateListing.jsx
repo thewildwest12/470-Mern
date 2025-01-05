@@ -290,3 +290,46 @@ export default function CreateListing() {
                 {uploading ? 'Uploading...' : 'Upload'}
               </button>
             </div>
+
+            {imageUploadError && (
+              <p className="text-red-500 text-lg text-center">{imageUploadError}</p>
+            )}
+
+            <div className="space-y-4">
+              {formData.imageUrls.map((url, index) => (
+                <div
+                  key={url}
+                  className="flex justify-between items-center p-4 bg-slate-900/50 rounded-lg border border-slate-700"
+                >
+                  <img
+                    src={url}
+                    alt="listing image"
+                    className="w-24 h-24 object-contain rounded-lg"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveImage(index)}
+                    className="px-6 py-3 text-red-500 hover:text-red-400 transition-colors text-lg"
+                  >
+                    Delete
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            <button
+              disabled={loading || uploading}
+              className="mt-6 p-4 bg-amber-400 text-slate-900 rounded-lg text-lg font-semibold hover:bg-amber-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? 'Updating...' : 'Update listing'}
+            </button>
+
+            {error && (
+              <p className="text-red-500 text-lg text-center mt-2">{error}</p>
+            )}
+          </div>
+        </form>
+      </div>
+    </main>
+  );
+}
