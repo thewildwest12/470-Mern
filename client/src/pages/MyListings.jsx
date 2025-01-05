@@ -183,5 +183,16 @@ export default function MyListings() {
           </div>
         )}
 
-
+        {/* Back to Profile Link */}
+        <div className="mt-8 text-center">
+          <Link
+            to="/profile"
+            className="text-amber-400 hover:text-amber-300 transition"
+          >
+            ← Back to Profile
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 }
