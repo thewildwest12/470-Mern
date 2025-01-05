@@ -46,4 +46,28 @@
               value={formData.address}
             />
             
-          
+            {/* Checkboxes for parking debugged  */} 
+            <div className="flex gap-6 flex-wrap">
+            {[
+                  { id: 'sale', label: 'Sale' },
+                  { id: 'rent', label: 'Rent' },
+                  { id: 'parking', label: 'Parking' },
+                  { id: 'furnished', label: 'Furnished' },
+                  { id: 'offer', label: 'Offer' }
+                ].map((item) => (
+                  <div key={item.id} className="flex gap-2 items-center">
+                    <input
+                      type="checkbox"
+                      id={item.id}
+                      className="w-5 h-5 rounded border-slate-600 text-amber-400 focus:ring-amber-400 bg-slate-800"
+                      onChange={handleChange}
+                      checked={
+                        item.id === 'sale' || item.id === 'rent'
+                          ? formData.type === item.id
+                          : formData[item.id]
+                      }
+                    />
+                    <span>{item.label}</span>
+                  </div>
+                ))}
+            </div>
