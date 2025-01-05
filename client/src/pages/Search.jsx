@@ -228,3 +228,53 @@ export default function Search() {
               </form>
             </div>
           </div>
+
+          {/* Listings Section */}
+          <div className="lg:w-2/3">
+            <div className="bg-slate-800 rounded-xl shadow-xl p-8 border border-slate-700">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl font-bold text-white mb-4">Featured Properties</h2>
+                <div className="w-24 h-1 bg-amber-400 mx-auto"></div>
+              </div>
+
+              {/* Loading State */}
+              {loading && (
+                <div className="flex justify-center items-center h-64">
+                  <div className="animate-spin rounded-full h-12 w-12 border-4 border-amber-400 border-t-transparent"></div>
+                </div>
+              )}
+
+              {/* No Results */}
+              {!loading && listings.length === 0 && (
+                <div className="text-center py-12">
+                  <p className="text-xl text-slate-400">No properties match your criteria</p>
+                </div>
+              )}
+
+              {/* Listings Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {!loading &&
+                  listings &&
+                  listings.map((listing) => (
+                    <ListingItem key={listing._id} listing={listing} />
+                  ))}
+              </div>
+
+              {/* Show More Button */}
+              {showMore && (
+                <div className="text-center mt-8">
+                  <button
+                    onClick={onShowMoreClick}
+                    className="inline-flex items-center px-6 py-3 border border-amber-400 text-amber-400 rounded-lg hover:bg-amber-400 hover:text-slate-900 transition-colors duration-300"
+                  >
+                    Load More Properties
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
