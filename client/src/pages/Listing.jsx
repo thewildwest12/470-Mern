@@ -27,3 +27,31 @@
   const handleEditReview = (review) => {
     setEditingReview(review);
   };
+
+  const handleDeleteReview = async (reviewId) => {
+    try {
+      const res = await fetch(`/api/review/delete/${reviewId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (res.ok) {
+        // Remove the deleted review from the reviews array
+        setReviews(reviews.filter(review => review._id !== reviewId));
+        // Reset hasUserReviewed if the user's review was deleted
+        if (currentUser) {
+          const remainingUserReview = reviews.find(review => review.userRef?._id === currentUser._id);
+          setHasUserReviewed(!remainingUserReview);
+        }
+      } else {
+        const errorData = await res.json();
+        console.error('Error deleting review:', errorData);
+        alert(errorData.message || 'Failed to delete review');
+      }
+    } catch (error) {
+      console.error('Error deleting review:', error);
+      alert('Failed to delete review');
+    }
+  };
