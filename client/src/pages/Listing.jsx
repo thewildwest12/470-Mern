@@ -1,3 +1,25 @@
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore from 'swiper';
+import { useSelector } from 'react-redux';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css/bundle';
+import {
+  FaBath,
+  FaBed,
+  FaChair,
+  FaMapMarkerAlt,
+  FaParking,
+  FaShare,
+  FaDollarSign,
+  FaCalendar,
+  FaStar,
+  // FaEdit,
+  FaTrash,
+} from 'react-icons/fa';
+import Contact from '../components/Contact';
+import ReviewForm from '../components/ReviewForm';
 
     const fetchReviews = async () => {
       try {
@@ -87,7 +109,6 @@
     }
   };
 
-
             {/* Reviews Section */}
             <div className="mt-8 bg-neutral-800 rounded-2xl p-6 border border-neutral-700">
               <h2 className="text-2xl font-bold text-white mb-6">Property Reviews</h2>
@@ -147,4 +168,16 @@
                   </div>
                 ))}
               </div>
-           
+            ) : (
+              <p className="text-neutral-400 text-center mt-4">
+                No reviews yet for this property
+              </p>
+            )}
+            </div>
+          </div>
+        </div>
+      )}
+    </main>
+  );
+}
+
