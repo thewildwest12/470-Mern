@@ -101,3 +101,27 @@
                   onUpdateReview={handleUpdateReview}
                 />
               )}
+
+              {/* Reviews List */}
+              {reviews.length > 0 ? (
+              <div className="grid gap-4 mt-6">
+                {reviews.map((review) => (
+                  <div 
+                    key={review._id} 
+                    className="bg-neutral-900 rounded-xl p-6 border border-neutral-700"
+                  >
+                    <div className="flex justify-between items-start mb-2">
+                      <div className="flex items-center">
+                        {/* Star Rating */}
+                        <div className="flex items-center mr-4">
+                          {[...Array(5)].map((_, index) => (
+                            <FaStar 
+                              key={index} 
+                              className={`mr-1 ${index < review.rating ? 'text-amber-500' : 'text-neutral-600'}`} 
+                            />
+                          ))}
+                          <span className="ml-2 text-neutral-400 text-sm">
+                            {review.rating}/5
+                          </span>
+                        </div>
+                        
