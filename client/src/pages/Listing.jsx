@@ -223,6 +223,61 @@ export default function Listing() {
                 </div>
               </div>
 
+              {/* Location */}
+              <div className="flex items-center gap-2 text-neutral-300">
+                <FaMapMarkerAlt className="text-amber-700" />
+                {listing.address}
+              </div>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-3">
+                <span className="px-4 py-2 rounded-full text-white bg-amber-700 text-sm">
+                  {listing.type === 'rent' ? 'For Rent' : 'For Sale'}
+                </span>
+                {listing.offer && (
+                  <span className="px-4 py-2 rounded-full text-amber-700 border border-amber-700 text-sm">
+                    ${+listing.regularPrice - +listing.discountPrice} OFF
+                  </span>
+                )}
+                <span className="px-4 py-2 rounded-full text-neutral-300 bg-neutral-700 text-sm flex items-center gap-2">
+                  <FaCalendar className="text-amber-700" />
+                  Available Now
+                </span>
+              </div>
+
+              {/* Description */}
+              <div className="bg-neutral-900 rounded-xl p-6 border border-neutral-700">
+                <h2 className="font-semibold text-white mb-3">About this property</h2>
+                <p className="text-neutral-300 leading-relaxed">{listing.description}</p>
+              </div>
+
+              {/* Features Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="flex items-center gap-3 bg-neutral-900 rounded-xl p-4 border border-neutral-700">
+                  <FaBed className="text-amber-700 text-2xl" />
+                  <span className="text-neutral-300">
+                    {listing.bedrooms} {listing.bedrooms > 1 ? 'Bedrooms' : 'Bedroom'}
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 bg-neutral-900 rounded-xl p-4 border border-neutral-700">
+                  <FaBath className="text-amber-700 text-2xl" />
+                  <span className="text-neutral-300">
+                    {listing.bathrooms} {listing.bathrooms > 1 ? 'Bathrooms' : 'Bathroom'}
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 bg-neutral-900 rounded-xl p-4 border border-neutral-700">
+                  <FaParking className="text-amber-700 text-2xl" />
+                  <span className="text-neutral-300">
+                    {listing.parking ? 'Parking Available' : 'No Parking'}
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 bg-neutral-900 rounded-xl p-4 border border-neutral-700">
+                  <FaChair className="text-amber-700 text-2xl" />
+                  <span className="text-neutral-300">
+                    {listing.furnished ? 'Furnished' : 'Unfurnished'}
+                  </span>
+                </div> 
+              </div>
 
               {/* Contact Button */}
               {currentUser && listing.userRef !== currentUser._id && !contact && (
