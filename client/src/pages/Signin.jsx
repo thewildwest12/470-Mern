@@ -25,6 +25,29 @@ export default function SignIn() {
     });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      dispatch(signInStart());
+      const res = await fetch('/api/auth/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(signInFailure(data.message)); //diff signup  handling by redux
+        return;
+      }
+      dispatch(signInSuccess(data)); //handling by redux toolkit diff signup
+      navigate('/');// navigate to homepage after signin
+    } catch (error) {
+      dispatch(signInFailure(error.message));
+    }
+  }; 
+
   return (
     <div className='min-h-screen bg-neutral-900 py-16'>
       <div className='max-w-lg mx-auto px-4'>
