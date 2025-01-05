@@ -155,3 +155,33 @@ export default function Profile() {
           </div>
         </div>
       )}
+
+      <div className="container mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-white mb-2">Profile Dashboard</h1>
+          <div className="w-24 h-1 bg-amber-400 mx-auto"></div>
+        </div>
+
+        {/* Main Content - Two Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {/* Left Column - Profile Image */}
+          <div className="bg-slate-800 rounded-xl p-8 shadow-xl border border-slate-700">
+            <div className="text-center mb-8">
+              <input
+                onChange={(e) => setFile(e.target.files[0])}
+                type="file"
+                ref={fileRef}
+                hidden
+                accept="image/*"
+              />
+              <img
+                onClick={() => fileRef.current.click()}
+                src={formData.avatar || currentUser.avatar}
+                alt="profile"
+                className="w-40 h-40 rounded-full mx-auto border-4 border-amber-400 cursor-pointer object-cover hover:opacity-90 transition"
+              />
+              <button
+                onClick={() => fileRef.current.click()}
+                className="mt-4 w-full bg-amber-600 text-white py-3 px-4 rounded-xl font-semibold hover:bg-amber-500 transition shadow-lg"
+  
