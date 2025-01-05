@@ -172,3 +172,41 @@ export default function CreateListing() {
     }
   };
   
+  return (
+    <main className="min-h-screen bg-gradient-to-r from-slate-900 to-slate-800 p-8">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-4xl md:text-5xl font-bold text-white text-center my-10 relative pb-4">
+          Update Your Listing
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-amber-400"/>
+        </h1>
+
+        <form onSubmit={handleSubmit} className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-8 shadow-2xl flex flex-col lg:flex-row gap-8 border border-slate-700">
+          <div className="flex flex-col gap-6 flex-1">
+            <input
+              type="text"
+              placeholder="Name"
+              className="bg-slate-900/50 border-2 border-slate-700 p-4 rounded-lg focus:border-amber-400 focus:outline-none transition-colors text-lg text-white"
+              id="name"
+              maxLength="62"
+              minLength="10"
+              required
+              onChange={handleChange}
+              value={formData.name}
+            />
+            <textarea
+              placeholder="Description"
+              className="bg-slate-900/50 border-2 border-slate-700 p-4 rounded-lg focus:border-amber-400 focus:outline-none transition-colors min-h-[150px] text-lg text-white"
+              id="description"
+              required
+              onChange={handleChange}
+              value={formData.description}
+            />
+            <input
+              type="text"
+              placeholder="Address"
+              className="bg-slate-900/50 border-2 border-slate-700 p-4 rounded-lg focus:border-amber-400 focus:outline-none transition-colors text-lg text-white"
+              id="address"
+              required
+              onChange={handleChange}
+              value={formData.address}
+            />
