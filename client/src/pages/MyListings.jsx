@@ -131,4 +131,24 @@ export default function MyListings() {
             <p className="text-white text-xl mb-6">You have not created any listings yet.</p>
           </div>
         ) : (
-          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {userListings.map((listing) => (
+              <div
+                key={listing._id}
+                className="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-amber-400 transition group"
+              >
+                <Link to={`/listing/${listing._id}`}>
+                  <div className="relative h-48">
+                    <img
+                      src={listing.imageUrls[0]}
+                      alt="listing cover"
+                      className="h-full w-full object-cover"
+                    />
+                    <div className="absolute top-2 right-2 bg-slate-900/80 px-3 py-1 rounded-full">
+                      <span className="text-amber-400 font-semibold">
+                        ${listing.regularPrice.toLocaleString()}
+                        {listing.type === 'rent' && '/month'}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
