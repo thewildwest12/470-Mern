@@ -127,3 +127,15 @@ export default function Search() {
     }
     setListings([...listings, ...data]);
   };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-r from-slate-900 to-slate-800">
+      {/* Hero Section */}
+      <div className="bg-gradient-to-r from-slate-800 to-slate-900 py-16 border-b border-slate-700">
+        <div className="max-w-6xl mx-auto px-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">
+            Find Your Perfect Property
+          </h1>
+          <div className="w-24 h-1 bg-amber-400 mx-auto mb-8"></div>
+        </div>
+      </div>
