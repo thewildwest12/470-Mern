@@ -23,4 +23,15 @@ export default function Contact({ listing }) {
     fetchLandlord();
   }, [listing.userRef]);
 
- 
+  const handleSendMessage = () => {
+    if (!message.trim()) {
+      toast.error("Message cannot be empty!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      return;
+    }
